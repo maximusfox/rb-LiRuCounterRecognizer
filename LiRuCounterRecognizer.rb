@@ -26,7 +26,7 @@ get '/' do
 end
 
 def write_file(path, data, option = 'wb')
-  gif_counter = File.new(path, 'wb')
+  gif_counter = File.new(path, option)
   gif_counter.write(data)
   gif_counter.close
 end
