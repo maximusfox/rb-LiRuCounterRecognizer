@@ -6,6 +6,7 @@ require 'chunky_png'
 require 'httpclient'
 require 'domain_name'
 require 'mini_magick'
+require 'socksify'
 
 require 'sinatra'
 require 'sinatra/config_file'
@@ -13,6 +14,19 @@ require 'sinatra/config_file'
 require File.dirname(__FILE__) + '/recognizer.rb'
 
 config_file 'config.yml'
+
+if settings.httpclient_socks_proxy[:enabled]
+  # Proxy debuging
+  if settings.httpclient_socks_proxy[:debug].equal? 'true'
+    Socksify.debug = true
+  end
+
+  # Proxy
+  TCPSocket.socks_server = settings.httpclient_socks_proxy[:host]
+  TCPSocket.socks_port = settings.httpclient_socks_proxy[:port]
+
+  puts "Proxy enabled! [#{settings.httpclient_socks_proxy[:host]}:#{settings.httpclient_socks_proxy[:port]}]"
+end
 
 recognizer = Recognizer.new
 ua = HTTPClient.new

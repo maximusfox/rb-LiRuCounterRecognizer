@@ -1,3 +1,4 @@
 db: { path: db }
 patterns: { path: patterns }
 downloader: { time_to_live: 60, empty_counter_md5: ae55e4e1a4df9fef4334e18e9c825344 }
+httpclient_socks_proxy: {enabled: true, host: 127.0.0.1, port: 9050, debug: false}
