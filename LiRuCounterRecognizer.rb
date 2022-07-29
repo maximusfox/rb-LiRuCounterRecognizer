@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'json'
 require 'digest/md5'
 require 'chunky_png'
